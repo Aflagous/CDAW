@@ -6,7 +6,7 @@
     <title>Heure Courante</title>
 </head>
 <body>
-    <h1>Heure Courante</h1>
+    <h1>Heure Courantes</h1>
     <p>L'heure actuelle est : <?php echo date("H:i:s"); ?></p>
 </body>
 </html>
