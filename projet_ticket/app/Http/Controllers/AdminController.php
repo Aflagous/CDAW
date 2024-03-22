@@ -10,26 +10,53 @@ class AdminController extends Controller
     public function home()
     {
         $isAdmin = auth()->user()->admin ?? false;
-        return view('dashboard')->with('isAdmin', $isAdmin);
+        $personne = User::findOrFail(auth()->user()->id);
+        $amis = $personne->friends()->get();
+
+
+        return view('dashboard', [
+            'amis' => $amis,
+            'isAdmin' => $isAdmin
+        ]);
     }
     public function classement()
     {
+
         $isAdmin = auth()->user()->admin ?? false;
-        return view('ranking')->with('isAdmin', $isAdmin);
+        $personne = User::findOrFail(auth()->user()->id);
+        $friends = $personne->friends()->get();
+
+
+        return view('ranking', [
+            'amis' => $friends,
+            'isAdmin' => $isAdmin
+        ]);
     }
     public function amis()
     {
+
         $isAdmin = auth()->user()->admin ?? false;
-        return view('amis')->with('isAdmin', $isAdmin);
+        $personne = User::findOrFail(auth()->user()->id);
+        $amis = $personne->friends()->get();
+
+
+        return view('amis', [
+            'amis' => $amis,
+            'isAdmin' => $isAdmin
+        ]);
     }
     public function administration()
     {
         $userId = auth()->user()->id;
 
-        $informations = User::where('id', '!=', $userId)->get();   
+        $informations = User::where('id', '!=', auth()->user()->id)->get();   
         $isAdmin = auth()->user()->admin ?? false;
+        $personne = User::findOrFail(auth()->user()->id);
+        $amis = $personne->friends()->get();
+
 
         return view('administration', [
+            'amis' => $amis,
             'informations' => $informations,
             'isAdmin' => $isAdmin
         ]);
@@ -37,12 +64,28 @@ class AdminController extends Controller
     public function parties()
     {
         $isAdmin = auth()->user()->admin ?? false;
-        return view('parties')->with('isAdmin', $isAdmin);
+
+        $personne = User::findOrFail(auth()->user()->id);
+        $friends = $personne->friends()->get();
+
+
+        return view('parties', [
+            'friends' => $friends,
+            'isAdmin' => $isAdmin
+        ]);
     }
     public function profile()
     {
         $isAdmin = auth()->user()->admin ?? false;
-        return view('compte')->with('isAdmin', $isAdmin);
+        $user = auth()->user();
+        $personne = User::findOrFail($user->id);
+        $friends = $personne->friends()->get();
+
+        return view('compte', [
+            'friends' => $user,
+            'amis' => $friends,
+            'isAdmin' => $isAdmin
+        ]);
     }
 
     public function changeAdmin($id)

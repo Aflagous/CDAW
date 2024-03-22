@@ -1,12 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
-    <section class="w-full flex flex-col gap-10 items-center my-[50px]">
+    <section class="w-full flex flex-col gap-10 items-center">
+        <div>
+            <h1 class="text-5xl text-daark-green">
+                Amis
+            </h1>
+        </div>
         <div class="flex flex-row gap-20 justify-center">
-            <div class="bg-red-400">
+            <div class="">
                 @foreach($friends as $information)
-                    <div class="flex flex-row gap-20">
+                    <div class="flex flex-row gap-20 odd:bg-middle-light-green even:bg-green px-4 py-1">
                         <p class="w-[50px]">{{ $information->name}}</p>
+                        <form action="{{ route('userretirer', ['Id' => $information->id, 'userId' => $userId]) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="personne_id" value="{{ $information->id }}">
+                            <button class="" type="submit">Retirer</button>
+                        </form> 
                     </div>
                 @endforeach
             </div>
@@ -26,7 +36,7 @@
         </div>
         <a href="{{ route('user.friends', ['userId' => auth()->user()->id]) }}" class="btn btn-primary">Retour aux amis</a>
     </section>
- 
+
 @endsection
 
 

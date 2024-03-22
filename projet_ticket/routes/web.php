@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\MessageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,14 @@ Route::post('/modify-admin/{id}', [AdminController::class, 'changeAdmin'])->name
 Route::post('/modify-bloque/{id}', [AdminController::class, 'changeBloque'])->name('Modify_bloque');
 Route::get('/amis/{userId}', [FriendsController::class, 'showFriends'])->name('user.friends');
 Route::post('/amis/ajouter/{userId}', [FriendsController::class, 'ajouterFriends'])->name('userajouter');
+Route::post('/amis/retirer/{Id}/{userId}', [FriendsController::class, 'retirerFriends'])->name('userretirer');
+
+Route::get('/message', [MessageController::class, 'test'])->name('message');
+
 
 Route::get('/search/admin', [SearchController::class, 'search'])->name('search');
 Route::get('/search/amis/{userId}', [SearchController::class, 'search_amis'])->name('search_amis');
+Route::get('/compte/personne', [SearchController::class, 'search_profile'])->name('search_profile');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

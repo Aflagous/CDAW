@@ -11,11 +11,23 @@ export default {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
+          colors: {
+            "green": "#19C580",
+            "dark-green": "#007848",
+            "middle-dark-green": "#00A864",
+            "middle-light-green": "#43D198",
+            "light-green": "#7BE2B8",
+            "daark-green": "#0B643E",
+          },
+          fontFamily: {
+              "man-rope": "ManRope",
+              "space-grotesk": ["SpaceGrotesk", "sans-serif"],
+          },
+          maxWidth: {
+            "8xl": "1270px"
+          },
         },
-    },
+      },
 
     plugins: [forms],
 };

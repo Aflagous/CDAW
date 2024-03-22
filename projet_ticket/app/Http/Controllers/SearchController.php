@@ -22,20 +22,36 @@ class SearchController extends Controller
         ]);
     }
 
+    public function search_profile(Request $request)
+    {
+        $query = $request->input('query');
+
+        $user = User::where('name', $query)->first();
+
+        $isAdmin = auth()->user()->admin ?? false;
+
+        return view('compte', [
+            'friends' => $user,
+            'isAdmin' => $isAdmin
+        ]);
+    }
+    
+
     public function search_amis(Request $request, $userId)
     {
         $query = $request->input('query');
         $personne = User::findOrFail($userId);
 
-        $friends = $personne->friends()
+        $amis = $personne->friends()
             ->where('name', 'like', '%' . $query . '%')
             ->get();
 
         $isAdmin = auth()->user()->admin ?? false;
 
         return view('amis', [
-            'friends' => $friends,
+            'amis' => $amis,
             'isAdmin' => $isAdmin
         ]);
+
     }
 }

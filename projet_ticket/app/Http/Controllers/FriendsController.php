@@ -19,10 +19,11 @@ class FriendsController extends Controller
 
         return view('amis', [
             'friends' => $friends,
-            'isAdmin' => $isAdmin
+            'isAdmin' => $isAdmin,
+            'userId' => $userId
         ]);
     }
-
+    
     public function ajouterFriends(Request $request, $userId)
     {
         $request->validate([
@@ -35,7 +36,21 @@ class FriendsController extends Controller
             auth()->user()->friends()->attach($friend->id);
             return redirect()->back();
         } else {
-            return redirect()->back()->with('error', 'L\'ami avec ce nom n\'a pas été trouvé.');
+            return redirect()->back();
         }
     }
+
+    public function retirerFriends($Id, $userId)
+    {
+        $personne = User::findOrFail($Id);
+        $user = User::findOrFail($userId);
+
+        $relation = Friendship::where('user_id', '=', $userId)
+                                ->where('friend_id', '=', $Id)
+                                ->delete();
+
+        
+        return redirect()->back();
+    }
+
 }

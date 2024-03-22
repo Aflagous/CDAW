@@ -75,7 +75,12 @@
         </section>
         <div x-show="open" @click=" open = false " class="w-full h-full fixed bg-slate-500 top-0 left-0 opacity-50 z-10"></div>
         <div x-show="open" class="top-1/4 left-1/4 fixed bg-blue-700 w-1/2 h-1/2 z-20">
-            Content...
+            <p>
+                qsdfqsdfq
+            </p>
+            <div @click=" open = false ">
+                bonjour
+            </div>
         </div>
     </div>
 @endsection

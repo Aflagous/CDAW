@@ -13,8 +13,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="{{ asset('js/app.js') }}"></script>
+
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased flex flex-col gap-10">
         @yield('page')
     </body>
+
 </html>
