@@ -8,20 +8,25 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function home()
-    {
+{
+    if (auth()->check()) {
+        // L'utilisateur est connecté
         $isAdmin = auth()->user()->admin ?? false;
         $personne = User::findOrFail(auth()->user()->id);
         $amis = $personne->friends()->get();
-
 
         return view('dashboard', [
             'amis' => $amis,
             'isAdmin' => $isAdmin
         ]);
+    } else {
+        return view('dashboard');
     }
+}
+
+
     public function classement()
     {
-
         $isAdmin = auth()->user()->admin ?? false;
         $personne = User::findOrFail(auth()->user()->id);
         $friends = $personne->friends()->get();
@@ -64,13 +69,12 @@ class AdminController extends Controller
     public function parties()
     {
         $isAdmin = auth()->user()->admin ?? false;
-
         $personne = User::findOrFail(auth()->user()->id);
-        $friends = $personne->friends()->get();
+        $amis = $personne->friends()->get();
 
 
-        return view('parties', [
-            'friends' => $friends,
+        return view('partie', [
+            'amis' => $amis,
             'isAdmin' => $isAdmin
         ]);
     }

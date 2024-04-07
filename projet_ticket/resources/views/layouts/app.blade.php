@@ -12,9 +12,14 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="{{ asset('js/app.js') }}"></script>
+        @vite(['resources/css/app.css', 'resources/js/websocket.js', 'resources/js/app.js', 'resources/js/jeu.js'])
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/websocket.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        
+        <script src="http://localhost:6001/socket.io/socket.io.js"></script>
 
+        
     </head>
     <body class="font-sans antialiased flex flex-col gap-10">
         @yield('page')

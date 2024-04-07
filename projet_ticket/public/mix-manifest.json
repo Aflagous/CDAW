@@ -1,3 +1,6 @@
 {
-    "/js/app.js": "/js/app.js"
+    "/js/app.js": "/js/app.js",
+    "/js/jeu.js": "/js/jeu.js",
+    "/js/websocket.js": "/js/websocket.js",
+    "/css/all.css": "/css/all.css"
 }

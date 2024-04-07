@@ -12,9 +12,16 @@ class MessageController extends Controller
 {
     public function test() {
         $event = new MessageEvent();
-        event($event);
-
-
+        broadcast($event)->toOthers();
         return view('message');
     }
+
+    public function envoyermessage($id) {
+
+        $personne = User::find($id);
+        dd($personne);
+
+    }
+
 }
+

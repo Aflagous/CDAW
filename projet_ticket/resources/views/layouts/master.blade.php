@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('page')
-    @include('layouts.partials.header')
-    @include('layouts.conversations.chat')
+    @if(Auth::check())
+        @include('layouts.partials.header')
+    @else
+        @include('layouts.partials.header_admin')
+    @endif
+
     <div class="">
         @yield('content')
     </div>

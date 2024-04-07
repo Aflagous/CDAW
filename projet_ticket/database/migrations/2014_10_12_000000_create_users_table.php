@@ -28,6 +28,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        // Désactiver les contraintes de clé étrangère
+    Schema::disableForeignKeyConstraints();
+
+    // Supprimer la table users
+    Schema::dropIfExists('users');
+
+    // Réactiver les contraintes de clé étrangère
+    Schema::enableForeignKeyConstraints();
     }
 };

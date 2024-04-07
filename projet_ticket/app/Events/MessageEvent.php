@@ -30,7 +30,8 @@ class MessageEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chan-demo'),
+            new Channel('wed-demo'),
         ];
     }
 }
+

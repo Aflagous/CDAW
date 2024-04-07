@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id');
     }
+
+    public function groupe()
+    {
+        return $this->hasOne(Groupe::class, 'joueur_id');
+    }
 }

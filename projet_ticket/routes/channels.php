@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use App\Models\Groupe;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('message.{personneId}', function ($user, $personneId) {
+    return $user->id === $personneId;
+});
+
+
+Broadcast::channel('partie.{partieId}', function ($user, $partieId) {
+    return $user->groupe->partie_id == $partieId;
+});
+

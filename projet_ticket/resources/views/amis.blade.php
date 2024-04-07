@@ -9,7 +9,7 @@
         </div>
         <div class="flex flex-row gap-20 justify-center">
             <div class="">
-                @foreach($friends as $information)
+                @foreach($amis as $information)
                     <div class="flex flex-row gap-20 odd:bg-middle-light-green even:bg-green px-4 py-1">
                         <p class="w-[50px]">{{ $information->name}}</p>
                         <form action="{{ route('userretirer', ['Id' => $information->id, 'userId' => $userId]) }}" method="POST">

@@ -19,6 +19,7 @@ class FriendsController extends Controller
 
         return view('amis', [
             'friends' => $friends,
+            'amis' => $friends,
             'isAdmin' => $isAdmin,
             'userId' => $userId
         ]);
